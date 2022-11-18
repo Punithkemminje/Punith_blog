@@ -1,4 +1,5 @@
 import os
+from logging import FileHandler,WARNING
 from flask import Flask, render_template, redirect, url_for, flash, abort
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -11,6 +12,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import LoginForm, RegisterForm, CreatePostForm, CommentForm
 from flask_gravatar import Gravatar
 app = Flask(__name__, template_folder="templates")
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
 app.config['SECRET_KEY'] = os.environ.get('SECRETE_KEY')
 ckeditor = CKEditor(app)
 Bootstrap(app)
